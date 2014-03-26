@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>26 de marzo</title>
+
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.0.min.css"/>
+<link rel="stylesheet" href="css/jquery.mobile.theme-1.0.min.css"/>
+<link rel="stylesheet" href="css/vanilla.css"/>
+<!--script src="jquery-mobile/jquery-1.6.4.min.js"></script-->
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.mobile-1.0.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+$(function(){
+	$("#registrar").click(function(){
+		var nombre=$("#txtNombre").val();
+		var semestre=$("#txtSemestre").val();
+		var primero=$("#txtPrimero").val();
+		var segundo=$("#txtSegundo").val();
+		var tercero=$("#txtTercero").val();
+		var cuarto=$("#txtCuarto").val();
+
+		$.ajax({
+		type:"POST",
+		url:"http://diego_rogelio_pa.260mb.net/26_marzo/alumno.php",
+		data:({Nom:nombre, Sem:semestre, P1:primero, P2:segundo, P3:tercero, P4:cuarto}),
+		cache:false,
+		dataType:"text",
+		success:exitoso
+		});
+		});
+
+		function exitoso(data){
+			alert("El alumno se registrò correctamente");
+			var n = document.getElementById("txtNombre");
+		var s = document.getElementById("txtSemestre");
+		var p1 = document.getElementById("txtPrimero");
+		var p2 = document.getElementById("txtSegundo");
+		var p3 = document.getElementById("txtTercero");
+		var p4 = document.getElementById("txtCuarto");
+
+		n.innerHTML="";
+		s.innerHTML="";
+		p1.innerHTML="";
+		p2.innerHTML="";
+		p3.innerHTML="";
+		p4.innerHTML="";
+		}
+	
+});
+</script>
+
+
+</head>
+ 
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>Registrar</h1>
+	</div>
+	<div data-role="content">	
+    <input type="text" placeholder="Nombre del Alumno" id="txtNombre" name="txtNombre"/>
+    <input type="number" placeholder="Semestre" id="txtSemestre" name="txtSemestre"/>
+    <input type="number" placeholder="Primer parcial" id="txtPrimero" name="txtPrimero"/>
+    <input type="number" placeholder="Segundo Parcial" id="txtSegundo" name="txtSegundo"/>
+    <input type="number" placeholder="Tercer Parcial" id="txtTercero" name="txtTercero"/>
+    <input type="number" placeholder="Cuarto Parcial" id="txtCuarto" name="txtCuarto"/>
+	</div>
+	<div data-role="footer">
+		<input type="submit" id="registrar" value="Registrar"/>
+	</div>
+</div>
+
+</body>
+</html>
